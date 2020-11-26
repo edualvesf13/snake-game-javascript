@@ -2,6 +2,10 @@ let canvas = document.getElementById('snake')
 let context = canvas.getContext('2d') // contexto de renderização em 2D para a superfície de desenho do elemento 
 let box = 32
 let snake = []
+let food = {
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
 let direction
 
 snake[0] = {
@@ -21,8 +25,9 @@ function drawSnake() {
     }
 }
 
-function criarFood() {
-    
+function drawFood() {
+    context.fillStyle = 'red'
+    context.fillRect(food.x, food.y, box, box)
 }
 
 function update(event) {
@@ -44,6 +49,7 @@ function startGame() {
 
     drawBG()
     drawSnake()
+    drawFood()
     
     let snakeX = snake[0].x
     let snakeY = snake[0].y
